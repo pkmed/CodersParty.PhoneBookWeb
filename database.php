@@ -19,6 +19,11 @@ function getPhonesList(){
 function addPhone($name, $number, $address){
 	$db_connection = dbConnect();
 	$db_connection->query("INSERT INTO `phones` (`name`, `number`, `address`) VALUES ('{$name}', {$number}, '{$address}');");
+	if(strpos(mysqli_error($db_connection),"Duplicate")==false){
+		return true;
+	} else {
+		return false;
+	}
 	closeConnection($db_connection);
 }
 function deletePhone($id){

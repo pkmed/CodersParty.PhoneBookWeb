@@ -1,9 +1,15 @@
 <?php
 require_once '../database.php';
 if($_GET['name']!=null){
-	editPhone($_GET['id'],$_GET['name'],$_GET['number'],$_GET['address']);
-	header("Location: ../index.php");
+	if(preg_match("/[a-z]/i", $_GET['number'])){
+	    print "number contains letters!";
+	    goto form;
+	} else {
+		editPhone($_GET['id'],$_GET['name'],$_GET['number'],$_GET['address']);
+		header("Location: ../index.php");
+	}
 } else { 
+	form:
 	if((int)$_GET['id']!=0){
 		$phone = getPhoneByID($_GET['id']);
 	}?>

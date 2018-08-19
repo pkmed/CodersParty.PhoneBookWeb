@@ -1,9 +1,16 @@
 <?php
 require_once '../database.php';
 if($_GET['name']!=null&&$_GET['number']!=null&&$_GET['address']!=null){
-	addPhone($_GET['name'],$_GET['number'],$_GET['address']);
-	header("Location: ../index.php");
-	exit();
+	if(preg_match("/[a-z]/i", $_GET['number'])){
+	    print "number contains letters!";
+	} else {
+		if(addPhone($_GET['name'],$_GET['number'],$_GET['address'])==true){
+			header("Location: ../index.php");
+			exit();
+		} else {
+			print "number already exists";
+		}
+	}
 }
 ?>
 <!DOCTYPE html>
