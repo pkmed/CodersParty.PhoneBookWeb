@@ -1,5 +1,6 @@
 <?php
 require_once 'database.php';
+checkTable();
 $phones = getPhonesList();
 ?>
 <!DOCTYPE html>

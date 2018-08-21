@@ -1,8 +1,33 @@
 <?php
+/*
+CREATE TABLE `people` (
+  `id` int(11) NOT NULL,
+  `phoneNumber` bigint(15) NOT NULL,
+  `fullName` varchar(45) NOT NULL,
+  `address` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `phoneNumber_UNIQUE` (`phoneNumber`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
+Table 'people' already exists
+*/
 function dbConnect(){
 	$connection = @new mysqli("127.0.0.1", "root", "", "phoneBook");
 	return $connection;
+}
+function checkTable(){
+	$db_connection = dbConnect();
+	$db_connection->query("CREATE TABLE `phones` ( 
+		`name` VARCHAR(45) NOT NULL, 
+		`number` INT(15) NOT NULL, 
+		`address` VARCHAR(45) NOT NULL, 
+		`id` INT NOT NULL AUTO_INCREMENT, 
+		PRIMARY KEY (`id`), 
+		UNIQUE INDEX `number_UNIQUE` (`number`), 
+		UNIQUE INDEX `id_UNIQUE` (`id`) 
+	)ENGINE = InnoDB DEFAULT CHARSET=utf8");
+	closeConnection($db_connection);
 }
 function closeConnection($connection){
 	$connection->close();
