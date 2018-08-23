@@ -1,5 +1,10 @@
 <?php
+error_reporting (E_ERROR);
 require_once '../database.php';
+if($_GET['backFlag']!=null){
+    header("Location: ../index.php");
+	exit();
+}
 if($_GET['name']!=null&&$_GET['number']!=null&&$_GET['address']!=null){
 	if(preg_match("/[a-z]/i", $_GET['number'])){
 	    print "number contains letters!";
@@ -23,5 +28,6 @@ if($_GET['name']!=null&&$_GET['number']!=null&&$_GET['address']!=null){
 		<label>address</label>
 		<input type="text" name="address"><br>
 		<input type="submit" value="add">
+		<input type="submit" value="back" name="backFlag">
 	</form>
 </body>

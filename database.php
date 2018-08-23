@@ -1,24 +1,12 @@
 <?php
-/*
-CREATE TABLE `people` (
-  `id` int(11) NOT NULL,
-  `phoneNumber` bigint(15) NOT NULL,
-  `fullName` varchar(45) NOT NULL,
-  `address` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `phoneNumber_UNIQUE` (`phoneNumber`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
-
-Table 'people' already exists
-*/
+error_reporting (E_ERROR);
 function dbConnect(){
-	$connection = @new mysqli("127.0.0.1", "root", "", "phoneBook");
+	$connection = @new mysqli("localhost", "id6880972_root", "666partywiththedevilbitch", "id6880972_phonebook");
 	return $connection;
 }
 function checkTable(){
 	$db_connection = dbConnect();
-	$db_connection->query("CREATE TABLE `phones` ( 
+	$db_connection->query("CREATE TABLE IF NOT EXISTS `phones` ( 
 		`name` VARCHAR(45) NOT NULL, 
 		`number` INT(15) NOT NULL, 
 		`address` VARCHAR(45) NOT NULL, 
@@ -26,7 +14,7 @@ function checkTable(){
 		PRIMARY KEY (`id`), 
 		UNIQUE INDEX `number_UNIQUE` (`number`), 
 		UNIQUE INDEX `id_UNIQUE` (`id`) 
-	)ENGINE = InnoDB DEFAULT CHARSET=utf8");
+	)DEFAULT CHARSET=utf8");
 	closeConnection($db_connection);
 }
 function closeConnection($connection){
@@ -35,6 +23,7 @@ function closeConnection($connection){
 function getPhonesList(){
 	$db_connection = dbConnect();
 	$result = $db_connection->query("SELECT * FROM `phones` ORDER BY `name`, `address`");
+	$phones = array();
 	while ($row = $result->fetch_row()){
 		$phones[] = $row;
 	}
@@ -59,28 +48,40 @@ function deletePhone($id){
 function getPhoneByID($id){
 	$db_connection = dbConnect();
 	$result = $db_connection->query("SELECT * FROM `phones` WHERE `id`='{$id}'");
-	$phone = $result->fetch_row();
+	$phone = array();
+	while ($row = $result->fetch_row()){
+		$phone[] = $row;
+	}
 	closeConnection($db_connection);
 	return $phone;
 }
 function getPhoneByName($name){
 	$db_connection = dbConnect();
 	$result = $db_connection->query("SELECT * FROM `phones` WHERE `name`='{$name}'");
-	$phone = $result->fetch_row();
+	$phone = array();
+	while ($row = $result->fetch_row()){
+		$phone[] = $row;
+	}
 	closeConnection($db_connection);
 	return $phone;
 }
 function getPhoneByAddress($address){
 	$db_connection = dbConnect();
 	$result = $db_connection->query("SELECT * FROM `phones` WHERE `address`='{$address}'");
-	$phone = $result->fetch_row();
+	$phone = array();
+	while ($row = $result->fetch_row()){
+		$phone[] = $row;
+	}
 	closeConnection($db_connection);
 	return $phone;
 }
 function getPhoneByNumber($number){
 	$db_connection = dbConnect();
 	$result = $db_connection->query("SELECT * FROM `phones` WHERE `number`='{$number}'");
-	$phone = $result->fetch_row();
+	$phone = array();
+	while ($row = $result->fetch_row()){
+		$phone[] = $row;
+	}
 	closeConnection($db_connection);
 	return $phone;
 }

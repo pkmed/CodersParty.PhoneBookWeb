@@ -1,4 +1,5 @@
 <?php
+error_reporting (E_ERROR);
 require_once 'database.php';
 checkTable();
 $phones = getPhonesList();
@@ -27,8 +28,8 @@ $phones = getPhonesList();
 						<td><?=$phones[$i][0]?></td>
 						<td><?=$phones[$i][1]?></td>
 						<td><?=$phones[$i][2]?></td>
-						<td><a href="../phonebook/functions/edit.php?id=<?=$phones[$i][3]?>">изменить</a></td>
-						<td><a href="../phonebook/functions/delete.php?id=<?=$phones[$i][3]?>">удалить</a></td>
+						<td><a href="../functions/edit.php?id=<?=$phones[$i][3]?>">изменить</a></td>
+						<td><a href="../functions/delete.php?id=<?=$phones[$i][3]?>">удалить</a></td>
 					</tr>
 			<?php } ?>
 		</table>

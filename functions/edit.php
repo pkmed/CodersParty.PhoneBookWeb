@@ -1,4 +1,5 @@
 <?php
+error_reporting (E_ERROR);
 require_once '../database.php';
 if($_GET['name']!=null){
 	if(preg_match("/[a-z]/i", $_GET['number'])){
@@ -14,6 +15,7 @@ if($_GET['name']!=null){
 		$phone = getPhoneByID($_GET['id']);
 	}?>
 	<!DOCTYPE html>
+<html>
 	<body>
 		<form method="get" action="edit.php">
 			<input name="id" value="<?=$_GET['id']?>" hidden>
@@ -26,15 +28,5 @@ if($_GET['name']!=null){
 			<input type="submit" value="edit">
 		</form>
 	</body>
-<?}
-
-//header("Location: ../index.php");
-
-/*
-editPhone($id,$_GET['name'],$_GET['number'],$_GET['address']);
-
-$phone = getPhoneByID($_GET['id']);
-$id=$_GET['id'];
-
-header("Location: ../index.php");*/
-?>
+</html>
+<?php }?>
