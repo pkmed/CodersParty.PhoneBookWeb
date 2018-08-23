@@ -16,7 +16,7 @@ else if($_GET['number']=="" && $_GET['number']!=null) {
 		error_reporting (E_ERROR);
 		require_once '../database.php';
 		if($_GET['number']!=""){
-			$phones = getPhoneByNumber($_GET['number']); 
+			$phones = getPhoneByNumber($_GET['number'], $_GET['isContains']); 
 			if(sizeof($phones)>0){ ?>
 
 				<form action="../index.php"><input type="submit" value="back"></form>
@@ -41,7 +41,7 @@ else if($_GET['number']=="" && $_GET['number']!=null) {
 			<?php
 			}
 		} else if($_GET['name']!=""){
-			$phones = getPhoneByName($_GET['name']); 
+			$phones = getPhoneByName($_GET['name'], $_GET['isContains']); 
 			if(sizeof($phones)>0){ ?>
 				
 				<form action="../index.php"><input type="submit" value="back"></form>
@@ -66,7 +66,7 @@ else if($_GET['number']=="" && $_GET['number']!=null) {
 			<?php
 			}
 		} else if($_GET['address']!=""){ 
-			$phones = getPhoneByAddress($_GET['address']); 
+			$phones = getPhoneByAddress($_GET['address'], $_GET['isContains']); 
 			if(sizeof($phones)>0){ ?>
 				
 				<form action="../index.php"><input type="submit" value="back"></form>
@@ -106,6 +106,8 @@ else if($_GET['number']=="" && $_GET['number']!=null) {
 				<input type="text" name="address"><br>
 			<?php 
 			} ?>
+				<label>Is contains</label>
+				<input type="checkbox" name="isContains"><br>
 				<input type="submit" value="find">
 			</form>
 			<form action="../index.php"><input type="submit" value="back"></form>

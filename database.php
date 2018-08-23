@@ -55,7 +55,7 @@ function getPhoneByID($id){
 	closeConnection($db_connection);
 	return $phone;
 }
-function getPhoneByName($name){
+function getPhoneByName($name, $containsPart){
 	$db_connection = dbConnect();
 	$result = $db_connection->query("SELECT * FROM `phones` WHERE `name`='{$name}'");
 	$phone = array();
@@ -65,7 +65,7 @@ function getPhoneByName($name){
 	closeConnection($db_connection);
 	return $phone;
 }
-function getPhoneByAddress($address){
+function getPhoneByAddress($address, $containsPart){
 	$db_connection = dbConnect();
 	$result = $db_connection->query("SELECT * FROM `phones` WHERE `address`='{$address}'");
 	$phone = array();
@@ -75,7 +75,7 @@ function getPhoneByAddress($address){
 	closeConnection($db_connection);
 	return $phone;
 }
-function getPhoneByNumber($number){
+function getPhoneByNumber($number, $containsPart){
 	$db_connection = dbConnect();
 	$result = $db_connection->query("SELECT * FROM `phones` WHERE `number`='{$number}'");
 	$phone = array();
