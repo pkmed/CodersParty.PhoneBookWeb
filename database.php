@@ -57,7 +57,11 @@ function getPhoneByID($id){
 }
 function getPhoneByName($name, $containsPart){
 	$db_connection = dbConnect();
-	$result = $db_connection->query("SELECT * FROM `phones` WHERE `name`='{$name}'");
+	if($containsPart == true){
+		$result = $db_connection->query("SELECT * FROM `phones` WHERE `name` REGEXP '\w[a-zA-Z]{name}\w[a-zA-Z]|{name}\w[a-zA-Z]|\w[a-zA-Z]{name}'");
+	} else {
+		$result = $db_connection->query("SELECT * FROM `phones` WHERE `name`='{$name}'");
+	}
 	$phone = array();
 	while ($row = $result->fetch_row()){
 		$phone[] = $row;
