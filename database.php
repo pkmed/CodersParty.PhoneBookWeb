@@ -50,7 +50,7 @@ function getPhoneByID($id){
 	$result = $db_connection->query("SELECT * FROM `phones` WHERE `id`='{$id}'");
 	$phone = array();
 	while ($row = $result->fetch_row()){
-		$phone[] = $row;
+		$phone = $row;
 	}
 	closeConnection($db_connection);
 	return $phone;
@@ -58,7 +58,7 @@ function getPhoneByID($id){
 function getPhoneByName($name, $containsPart){
 	$db_connection = dbConnect();
 	if($containsPart == true){
-		$result = $db_connection->query("SELECT * FROM `phones` WHERE `name` REGEXP '\w[a-zA-Z]{name}\w[a-zA-Z]|{name}\w[a-zA-Z]|\w[a-zA-Z]{name}'");
+		$result = $db_connection->query("SELECT * FROM `phones` WHERE `name` LIKE '%{$name}%'");
 	} else {
 		$result = $db_connection->query("SELECT * FROM `phones` WHERE `name`='{$name}'");
 	}
@@ -71,7 +71,11 @@ function getPhoneByName($name, $containsPart){
 }
 function getPhoneByAddress($address, $containsPart){
 	$db_connection = dbConnect();
-	$result = $db_connection->query("SELECT * FROM `phones` WHERE `address`='{$address}'");
+	if($containsPart == true){
+		$result = $db_connection->query("SELECT * FROM `phones` WHERE `address` LIKE '%{$address}%'");
+	} else {
+		$result = $db_connection->query("SELECT * FROM `phones` WHERE `address`='{$address}'");
+	}
 	$phone = array();
 	while ($row = $result->fetch_row()){
 		$phone[] = $row;
@@ -81,7 +85,11 @@ function getPhoneByAddress($address, $containsPart){
 }
 function getPhoneByNumber($number, $containsPart){
 	$db_connection = dbConnect();
-	$result = $db_connection->query("SELECT * FROM `phones` WHERE `number`='{$number}'");
+	if($containsPart == true){
+		$result = $db_connection->query("SELECT * FROM `phones` WHERE `number` LIKE '%{$number}%'");
+	} else {
+		$result = $db_connection->query("SELECT * FROM `phones` WHERE `number`='{$number}'");
+	}
 	$phone = array();
 	while ($row = $result->fetch_row()){
 		$phone[] = $row;
