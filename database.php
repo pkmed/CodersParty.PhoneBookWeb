@@ -1,7 +1,7 @@
 <?php
 error_reporting (E_ERROR);
 function dbConnect(){
-	$connection = @new mysqli("localhost", "id6880972_root", "666partywiththedevilbitch", "id6880972_phonebook");
+	$connection = @new mysqli("localhost", "id6880972_root", "pass", "id6880972_phonebook");
 	return $connection;
 }
 function checkTable(){
